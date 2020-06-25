@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:saloon/discount_model.dart';
+import 'package:saloon/models/discount_model.dart';
 
 class Numberpicker extends StatefulWidget {
   @override

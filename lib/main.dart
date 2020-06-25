@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:saloon/screens/pageview.dart';
-import 'package:saloon/screens/reservation.dart';
-import 'package:saloon/screens/reservation_cards.dart';
+//import 'package:saloon/screens/reservation_cards.dart';
+import 'package:saloon/screens/reservation_page.dart';
 //import 'package:saloon/formscreen.dart';
 //import 'package:saloon/numberpicker.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       //},
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Salooncards(),
+        body: ReservationPage(),
       ),
     );
   }
