@@ -11,6 +11,7 @@ class _SaloonResCardState extends State<SaloonResCard> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      
       itemBuilder: (context, index) {
         
         return Reuseablecard(res: dummyList[index],);
