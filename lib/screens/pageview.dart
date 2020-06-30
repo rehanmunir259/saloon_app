@@ -131,8 +131,9 @@ class _PageviewState extends State<Pageview> {
                 ),
                 Spacer(),
                 Container(
+                  width: 163.0,
                   padding: EdgeInsets.only(
-                      left: 16.0, right: 16.0, top: 12.0, bottom: 12.0),
+                      left: 19.0, right: 10.0, top: 12.0, bottom: 12.0),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black, width: 2.0),
                     borderRadius: BorderRadius.circular(36.0),
@@ -151,7 +152,6 @@ class _PageviewState extends State<Pageview> {
                                 _dateTime == null ? DateTime.now() : _dateTime,
                             firstDate: DateTime.now(),
                             lastDate: DateTime(3000),
-
                           ).then((date) {
                             setState(() {
                               _dateTime = date;
@@ -181,7 +181,18 @@ class _PageviewState extends State<Pageview> {
                   return GestureDetector(
                     onTap: () {
                       if (_dateTime == null || selecteditem == null) {
-                        print("No value provided");
+                        showDialog(
+                          context: context,
+                          child: AlertDialog(
+                            content: Text('Please select the Date or No of Person'),
+                            actions: <Widget>[
+                              FlatButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: Text('OK'),
+                              ),
+                            ],
+                          ),
+                        );
                       } else {
                         Navigator.push(
                           context,

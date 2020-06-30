@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saloon/screens/thankyou.dart';
 import 'package:saloon/widgets/textfield.dart';
 
 class ReservationDetail extends StatefulWidget {
@@ -58,17 +59,17 @@ class _ReservationDetailState extends State<ReservationDetail> {
               children: <Widget>[
                 Text(
                   'No of Person: ${widget.noofperson}',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20,),
                 ),
                 SizedBox(height: 10),
                 Text(
                   'Date: ${getFormattedDate(widget.date.toString())}',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, ),
                 ),
                 SizedBox(height: 10),
                 Text(
                   'Discount: ${widget.discount}%',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20,),
                 ),
                 SizedBox(height: 10),
                 SaloonTextField(
@@ -125,7 +126,7 @@ class _ReservationDetailState extends State<ReservationDetail> {
                           child: Text(
                             'Cancel',
                             style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.bold),
+                                fontSize: 20.0),
                           ),
                           shape: StadiumBorder(),
                           color: Colors.red[500],
@@ -138,6 +139,7 @@ class _ReservationDetailState extends State<ReservationDetail> {
                         child: FlatButton(
                           onPressed: () {
                             if (_formkey.currentState.validate()) {
+                              Navigator.push(context,MaterialPageRoute(builder: (context) => ThankyouPage(),),);
                             } else {
                               setState(() {
                                 autoValidate = true;
@@ -147,7 +149,7 @@ class _ReservationDetailState extends State<ReservationDetail> {
                           child: Text(
                             'Confirm',
                             style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.bold),
+                                fontSize: 20.0),
                           ),
                           shape: StadiumBorder(),
                           color: Colors.teal[400],
