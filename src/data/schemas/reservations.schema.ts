@@ -1,11 +1,24 @@
 import {Schema} from 'mongoose'
 
 export const ReservationSchema = new Schema({
+  saloon:[
+    {
+      type:Schema.Types.ObjectId,
+      ref:"saloons"
+    }
+  ],
   code:{
     type:Number,
-    required:true
+    required:true,
+    unique:true
   },
+  personName: String,
   noOfPerson: Number,
-  time:String,
-  discount: Number
-})
+  email:String,
+  reservationTime:Date,
+  discount: Number,
+
+}, {
+  timestamps: true
+  }
+)

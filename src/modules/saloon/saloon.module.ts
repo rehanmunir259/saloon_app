@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { SaloonController } from './saloon.controller';
 import { SaloonService } from './saloon.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import {SaloonSchema} from '../../data/schemas/salons.schema';
+import {SaloonSchema} from '../../data/schemas/saloons.schema';
 
 @Module({
   imports: [
