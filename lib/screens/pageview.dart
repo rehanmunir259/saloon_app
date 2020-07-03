@@ -82,7 +82,7 @@ class _PageviewState extends State<Pageview> {
         backgroundColor: Colors.teal,
       ),
       body: SingleChildScrollView(
-              child: Column(
+        child: Column(
           children: <Widget>[
             Expanded(
               child: PageView.builder(
@@ -94,7 +94,8 @@ class _PageviewState extends State<Pageview> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 20.0),
+              padding:
+                  const EdgeInsets.only(left: 15.0, right: 15.0, top: 20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +127,8 @@ class _PageviewState extends State<Pageview> {
                             );
                           },
                         ).toList(),
-                        onChanged: (String i) => setState(() => selecteditem = i),
+                        onChanged: (String i) =>
+                            setState(() => selecteditem = i),
                       ),
                     ),
                   ),
@@ -149,8 +151,9 @@ class _PageviewState extends State<Pageview> {
                           onTap: () {
                             showDatePicker(
                               context: context,
-                              initialDate:
-                                  _dateTime == null ? DateTime.now() : _dateTime,
+                              initialDate: _dateTime == null
+                                  ? DateTime.now()
+                                  : _dateTime,
                               firstDate: DateTime.now(),
                               lastDate: DateTime(3000),
                             ).then((date) {
@@ -185,7 +188,8 @@ class _PageviewState extends State<Pageview> {
                           showDialog(
                             context: context,
                             child: AlertDialog(
-                              content: Text('Please select the Date or No of Person'),
+                              content: Text(
+                                  'Please select the Date or No of Person'),
                               actions: <Widget>[
                                 FlatButton(
                                   onPressed: () => Navigator.of(context).pop(),
