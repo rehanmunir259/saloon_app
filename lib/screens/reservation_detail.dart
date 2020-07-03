@@ -59,17 +59,17 @@ class _ReservationDetailState extends State<ReservationDetail> {
               children: <Widget>[
                 Text(
                   'No of Person: ${widget.noofperson}',
-                  style: TextStyle(fontSize: 20,),
+                  style: TextStyle(fontSize: 17,),
                 ),
                 SizedBox(height: 10),
                 Text(
                   'Date: ${getFormattedDate(widget.date.toString())}',
-                  style: TextStyle(fontSize: 20, ),
+                  style: TextStyle(fontSize: 17, ),
                 ),
                 SizedBox(height: 10),
                 Text(
                   'Discount: ${widget.discount}%',
-                  style: TextStyle(fontSize: 20,),
+                  style: TextStyle(fontSize: 17,),
                 ),
                 SizedBox(height: 10),
                 SaloonTextField(
@@ -82,7 +82,7 @@ class _ReservationDetailState extends State<ReservationDetail> {
                   label: 'Name',
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: 10.0,
                 ),
                 SaloonTextField(
                   controller: emailController,
@@ -94,7 +94,7 @@ class _ReservationDetailState extends State<ReservationDetail> {
                   label: 'Email',
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: 10.0,
                 ),
                 SaloonTextField(
                   controller: phoneController,
@@ -106,7 +106,7 @@ class _ReservationDetailState extends State<ReservationDetail> {
                   label: 'Phone',
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: 10.0,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(18.0),
@@ -117,7 +117,8 @@ class _ReservationDetailState extends State<ReservationDetail> {
                       SizedBox(
                         height: 50.0,
                         width: 150.0,
-                        child: FlatButton(
+                        child: RaisedButton(
+                          elevation: 5,
                           onPressed: () {
                             setState(() {
                               Navigator.pop(context);
@@ -126,9 +127,11 @@ class _ReservationDetailState extends State<ReservationDetail> {
                           child: Text(
                             'Cancel',
                             style: TextStyle(
-                                fontSize: 20.0),
+                                fontSize: 18.0,color: Colors.white),
                           ),
-                          shape: StadiumBorder(),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                           color: Colors.red[500],
                         ),
                       ),
@@ -136,7 +139,8 @@ class _ReservationDetailState extends State<ReservationDetail> {
                       SizedBox(
                         height: 50.0,
                         width: 150.0,
-                        child: FlatButton(
+                        child: RaisedButton(
+                          elevation: 5.0,
                           onPressed: () {
                             if (_formkey.currentState.validate()) {
                               Navigator.push(context,MaterialPageRoute(builder: (context) => ThankyouPage(),),);
@@ -149,9 +153,11 @@ class _ReservationDetailState extends State<ReservationDetail> {
                           child: Text(
                             'Confirm',
                             style: TextStyle(
-                                fontSize: 20.0),
+                                fontSize: 18.0,color: Colors.white),
                           ),
-                          shape: StadiumBorder(),
+                          shape:RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                           color: Colors.teal[400],
                         ),
                       ),

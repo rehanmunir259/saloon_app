@@ -21,7 +21,7 @@ class SaloonTextField extends TextFormField {
             scrollPadding: EdgeInsets.all(80),
             decoration: InputDecoration(
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(15),
               ),
               prefixIcon: Icon(
                 icon,

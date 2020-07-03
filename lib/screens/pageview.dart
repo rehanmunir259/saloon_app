@@ -84,7 +84,8 @@ class _PageviewState extends State<Pageview> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Expanded(
+            Container(
+              height: 250.0,
               child: PageView.builder(
                 scrollDirection: Axis.horizontal,
                 controller: _pageController,
@@ -94,17 +95,25 @@ class _PageviewState extends State<Pageview> {
               ),
             ),
             Padding(
-              padding:
-                  const EdgeInsets.only(left: 15.0, right: 15.0, top: 20.0),
+              padding: const EdgeInsets.only(
+                  left: 10.0, right: 10.0, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.only(left: 18.0, right: 10.0),
+                    padding: EdgeInsets.only(left: 19.0, right: 10.0),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 2.0),
-                      borderRadius: BorderRadius.circular(36.0),
+                      //border: Border.all(color: Colors.black, width: 2.0),
+                    color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(15.0),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 7,
+                          spreadRadius: 3,
+                          color: Colors.grey[400]
+                        ),
+                      ]
                     ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
@@ -122,7 +131,11 @@ class _PageviewState extends State<Pageview> {
                         items: numberList.map(
                           (String item) {
                             return DropdownMenuItem(
-                              child: Text('$item'),
+                              child: SizedBox(
+                                child:
+                                    Text('$item', textAlign: TextAlign.end),
+                                width: 50,
+                              ),
                               value: item,
                             );
                           },
@@ -134,12 +147,20 @@ class _PageviewState extends State<Pageview> {
                   ),
                   Spacer(),
                   Container(
-                    width: 163.0,
+                    width: 160.0,
                     padding: EdgeInsets.only(
-                        left: 19.0, right: 10.0, top: 12.0, bottom: 12.0),
+                        left: 20.0, right: 10, top: 11.5, bottom: 11.5),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 2.0),
-                      borderRadius: BorderRadius.circular(36.0),
+                      //border: Border.all(color: Colors.black, width: 2.0),
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.grey[100],
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 7,
+                          spreadRadius: 3,
+                          color: Colors.grey[400],
+                        ),
+                      ],
                     ),
                     child: Row(
                       children: <Widget>[
@@ -165,7 +186,8 @@ class _PageviewState extends State<Pageview> {
                           child: Text(
                             _dateTime == null
                                 ? 'Picked the Date'
-                                : getFormattedDate(_dateTime.toIso8601String()),
+                                : getFormattedDate(
+                                    _dateTime.toIso8601String()),
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
@@ -175,9 +197,16 @@ class _PageviewState extends State<Pageview> {
                 ],
               ),
             ),
-            Expanded(
+            Container(
               child: Padding(
-                padding: const EdgeInsets.only(top: 30.0, bottom: 40.0),
+                padding: const EdgeInsets.only(top: 10,bottom: 10),
+                child: Center(child: Text('Discount & Time',style: TextStyle(fontWeight: FontWeight.w900,fontSize: 18),)),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5,bottom: 5),
+              child: Container(
+                height: 180.0,
                 child: ListView.builder(
                   itemCount: disList.length,
                   scrollDirection: Axis.horizontal,
@@ -237,12 +266,20 @@ class DiscountCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(6.0),
+      padding: const EdgeInsets.all(12.0),
       child: Container(
         width: 120,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 2.0),
-          borderRadius: BorderRadius.circular(25),
+          //border: Border.all(color: Colors.black, width: 2.0),
+          borderRadius: BorderRadius.circular(15),
+          color: Colors.grey[100],
+          boxShadow: [
+                    BoxShadow(
+                      blurRadius: 7,
+                      spreadRadius: 3,
+                      color: Colors.grey[400],
+                    ),
+                  ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
