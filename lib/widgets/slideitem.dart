@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saloon/models/slide_model.dart';
+import 'package:saloon/src/models/slide_model.dart';
 
 class Slideitem extends StatelessWidget {
   final int index;
@@ -11,7 +11,10 @@ class Slideitem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Container(
-          child: Image.network(slideList[index].imagerUrl,fit: BoxFit.fitWidth,),
+          child: Image.network(
+            slideList[index].imagerUrl,
+            fit: BoxFit.fitWidth,
+          ),
         ),
       ],
     );
