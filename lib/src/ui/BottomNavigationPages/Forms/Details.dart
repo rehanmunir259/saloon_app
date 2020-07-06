@@ -7,10 +7,6 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
-  String name;
-  String address;
-  String openingT;
-  String closingT;
   final addressController = TextEditingController();
   final nameController = TextEditingController();
   final openingTController = TextEditingController();
@@ -29,9 +25,6 @@ class _DetailsState extends State<Details> {
           return 'Field cannot be empty';
         }
       },
-      onSaved: (String value) {
-        name = value;
-      },
     );
   }
 
@@ -43,9 +36,6 @@ class _DetailsState extends State<Details> {
         if (value.isEmpty) {
           return 'Field cannot be empty';
         }
-      },
-      onSaved: (String value) {
-        address = value;
       },
       multiLine: true,
     );
@@ -60,9 +50,6 @@ class _DetailsState extends State<Details> {
           return 'Field cannot be empty';
         }
       },
-      onSaved: (String value) {
-        openingT = value;
-      },
     );
   }
 
@@ -75,9 +62,6 @@ class _DetailsState extends State<Details> {
           return 'Field cannot be empty';
         }
       },
-      onSaved: (String value) {
-        closingT = value;
-      },
     );
   }
 
@@ -89,7 +73,7 @@ class _DetailsState extends State<Details> {
           'Details',
         ),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: Color(0xFF0d1137),
       ),
       body: Container(
         margin: EdgeInsets.all(24),
@@ -145,7 +129,7 @@ class _DetailsState extends State<Details> {
                 padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: RaisedButton(
                   elevation: 5,
-                  color: Colors.teal,
+                  color: Color(0xFF0d1137),
                   child: Text(
                     'Next',
                     style: TextStyle(

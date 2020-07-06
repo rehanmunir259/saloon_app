@@ -14,7 +14,7 @@ class _AccountSettingState extends State<AccountSetting> {
           'Account Settings',
         ),
         centerTitle: true,
-        backgroundColor: Colors.indigo,
+        backgroundColor: Color(0xFF0d1137),
       ),
       body: ConstrainedBox(
         constraints: BoxConstraints.expand(),
@@ -25,7 +25,7 @@ class _AccountSettingState extends State<AccountSetting> {
             ConstrainedBox(
               constraints: BoxConstraints.expand(width: 200, height: 40),
               child: RaisedButton(
-                color: Colors.indigo,
+                color: Color(0xFF0d1137),
                 elevation: 5,
                 child: Text('CHANGE USERAME',
                     style: TextStyle(
@@ -42,7 +42,7 @@ class _AccountSettingState extends State<AccountSetting> {
             ConstrainedBox(
               constraints: BoxConstraints.expand(width: 200, height: 40),
               child: RaisedButton(
-                color: Colors.indigo,
+                color: Color(0xFF0d1137),
                 elevation: 5,
                 child: Text('CHANGE PASSWORD',
                     style: TextStyle(

@@ -52,13 +52,11 @@ class _ChangeUsernameState extends State<ChangeUsername> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: new IconThemeData(color: Colors.black),
         title: Text(
           'Change Username',
-          style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF0d1137),
       ),
       body: Container(
         margin: EdgeInsets.all(24),
@@ -81,7 +79,7 @@ class _ChangeUsernameState extends State<ChangeUsername> {
               Padding(
                 padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: RaisedButton(
-                  color: Colors.black,
+                  color: Color(0xFF0d1137),
                   child: Text(
                     'Submit',
                     style: TextStyle(

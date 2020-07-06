@@ -12,9 +12,8 @@ class _GridPackageState extends State<GridPackage> {
     return StaggeredGridView.countBuilder(
       crossAxisCount: 4,
       itemCount: 10,
-      itemBuilder: (BuildContext context, int index) => Card1(
-        color: Colors.amber.shade400,
-      ),
+      itemBuilder: (BuildContext context, int index) =>
+          Card1(color: Colors.orange),
       staggeredTileBuilder: (int index) =>
           StaggeredTile.count(2, index.isEven ? 3.25 : 2.75),
       mainAxisSpacing: 4.0,
@@ -43,16 +42,14 @@ class Card1 extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular((15))),
         color: color,
         child: Container(
-          margin: EdgeInsetsDirectional.only(
-            top: 15,
-          ),
+          margin: EdgeInsetsDirectional.only(top: 15, start: 20, end: 20),
           child: Column(children: <Widget>[
             CircleAvatar(
               radius: 55,
               backgroundImage: NetworkImage(
                   'https://images.unsplash.com/photo-1545231027-637d2f6210f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1575&q=80'),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 15),
             Text('Starbucks',
                 style: TextStyle(
                     color: Colors.white,
@@ -60,19 +57,16 @@ class Card1 extends StatelessWidget {
                     fontWeight: FontWeight.w900)),
             SizedBox(height: 10),
             Expanded(
-              child: Container(
-                padding: EdgeInsetsDirectional.only(start: 20),
-                child: Text(
-                  'Lorem Ipsum is simply dummy text. ',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                  // textAlign: TextAlign.justify,
+              child: Text(
+                'Lorem Ipsum is simply dummy text. ',
+                style: TextStyle(
+                  color: Colors.white,
                 ),
+                // textAlign: TextAlign.justify,
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(15, 0, 10, 10),
+              padding: const EdgeInsets.only(bottom: 10),
               child: Row(
                 children: <Widget>[
                   Icon(Icons.schedule, color: Colors.white),
@@ -81,7 +75,13 @@ class Card1 extends StatelessWidget {
                   ),
                   Text('9am-7pm',
                       style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w900))
+                          color: Colors.white, fontWeight: FontWeight.w900)),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  GestureDetector(
+                      onTap: null,
+                      child: Icon(Icons.favorite_border, color: Colors.white))
                 ],
               ),
             )

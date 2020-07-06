@@ -6,10 +6,11 @@ import 'AnimatedBottomBar.dart';
 
 class BottomBarNavigation extends StatefulWidget {
   final List<BarItem> barItems = [
-    BarItem(text: 'Home', icon: Icons.home, color: Colors.indigo),
+    BarItem(text: 'Home', icon: Icons.home, color: Color(0xFF0d1137)),
     BarItem(
-        text: 'Reservations', icon: Icons.schedule, color: Colors.pinkAccent),
-    BarItem(text: 'Form', icon: Icons.chrome_reader_mode, color: Colors.teal),
+        text: 'Reservations', icon: Icons.schedule, color: Color(0xFF0d1137)),
+    BarItem(
+        text: 'Form', icon: Icons.chrome_reader_mode, color: Color(0xFF0d1137)),
   ];
   @override
   _BottomBarNavigationState createState() => _BottomBarNavigationState();

@@ -75,7 +75,7 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
+        backgroundColor: Color(0xFF0d1137),
         title: Text(
           "Select Image",
         ),
@@ -107,7 +107,7 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
                 'Next',
                 style: TextStyle(color: Colors.white),
               ),
-              color: Colors.teal,
+              color: Color(0xFF0d1137),
             )
           ],
         ),

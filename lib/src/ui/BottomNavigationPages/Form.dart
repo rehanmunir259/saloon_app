@@ -29,33 +29,33 @@ class _FormPageState extends State<FormPage> {
             _key.currentState.openDrawer();
           },
         ),
-        backgroundColor: Colors.teal,
+        backgroundColor: Color(0xFF0d1137),
         title: Text('FormPage'),
         centerTitle: true,
       ),
       drawer: Drawer(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
-          color: Colors.indigo,
+          color: Color(0xFF0d1137),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 100,
+                  height: 50,
                 ),
                 ListTile(
                   title: Text(
                     'Asad',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 30,
+                        fontSize: 25,
                         fontWeight: FontWeight.w800),
                   ),
                   subtitle: Text(
                     'First App Project',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 15,
                     ),
                   ),
                   leading: CircleAvatar(
@@ -71,47 +71,47 @@ class _FormPageState extends State<FormPage> {
                   endIndent: 32,
                 ),
                 MenuItem(
-                  icon: Icons.home,
+                  icon: Icons.group_add,
                   title: 'Create Sub Admin',
                   onTap: () => navigateTo(context, SubAdmin()),
                 ),
                 MenuItem(
-                  icon: Icons.person,
+                  icon: Icons.person_pin,
                   title: 'Create Saloon Admin',
                   onTap: () => navigateTo(context, SaloonAdmin()),
                 ),
                 MenuItem(
-                  icon: Icons.shopping_basket,
+                  icon: Icons.settings,
                   title: 'Account Settings',
                   onTap: () => navigateTo(context, AccountSetting()),
                 ),
                 MenuItem(
-                  icon: Icons.home,
+                  icon: Icons.assignment,
                   title: 'Sub Admin Activites',
                   onTap: () => navigateTo(context, SubAdminActivities()),
                 ),
                 MenuItem(
-                  icon: Icons.person,
+                  icon: Icons.assignment_ind,
                   title: 'Saloon Reservations',
                   onTap: () => navigateTo(context, SaloonReservation()),
                 ),
                 MenuItem(
-                  icon: Icons.shopping_basket,
+                  icon: Icons.chat,
                   title: 'Terms&Conditions',
                   onTap: () => navigateTo(context, TermsAndConditions()),
                 ),
                 MenuItem(
-                  icon: Icons.home,
+                  icon: Icons.event_note,
                   title: 'Privacy Policies',
                   onTap: () => navigateTo(context, PrivacyPolicies()),
                 ),
                 MenuItem(
-                  icon: Icons.person,
+                  icon: Icons.question_answer,
                   title: 'FAQs',
                   onTap: () => navigateTo(context, FAQs()),
                 ),
                 MenuItem(
-                  icon: Icons.shopping_basket,
+                  icon: Icons.phone,
                   title: 'Contact Us',
                   onTap: () => navigateTo(context, Contact()),
                 ),
@@ -123,8 +123,12 @@ class _FormPageState extends State<FormPage> {
                   endIndent: 32,
                 ),
                 MenuItem(
-                  icon: Icons.settings,
-                  title: 'Settings',
+                  icon: Icons.person_add,
+                  title: 'Sign Up',
+                ),
+                MenuItem(
+                  icon: Icons.perm_identity,
+                  title: 'Sign In',
                 ),
                 MenuItem(
                   icon: Icons.exit_to_app,
@@ -138,7 +142,7 @@ class _FormPageState extends State<FormPage> {
       body: Container(
         child: Center(
           child: RaisedButton(
-            color: Colors.teal,
+            color: Color(0xFF0d1137),
             onPressed: () {
               Navigator.pushNamed(context, '/Details');
             },

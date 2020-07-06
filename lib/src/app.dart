@@ -3,6 +3,7 @@ import 'package:saloon/src/ui/AnimatedBottomBar/BottomBarNavigation.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/Forms/About.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/Forms/Details.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/Forms/ImagePickerPage.dart';
+import 'package:saloon/src/ui/BottomNavigationPages/Forms/confirm-details.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/Forms/numberpicker.dart';
 import 'package:saloon/src/ui/DrawerPages/AccountSetting.dart';
 import 'package:saloon/src/ui/DrawerPages/ChangePassword.dart';
@@ -15,7 +16,7 @@ import 'package:saloon/src/ui/TabPages/grid-package.dart';
 class SaloonApp extends MaterialApp {
   SaloonApp()
       : super(
-          home: BottomBarNavigation(),
+          home: ConfirmDetails(),
           routes: {
             '/SubAdmin': (context) => SubAdmin(),
             '/SaloonAdmin': (context) => SaloonAdmin(),

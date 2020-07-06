@@ -41,7 +41,7 @@ class _NumberpickerState extends State<Numberpicker> {
         title: Text(
           'Discount',
         ),
-        backgroundColor: Colors.teal,
+        backgroundColor: Color(0xFF0d1137),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

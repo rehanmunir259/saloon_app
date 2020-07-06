@@ -107,7 +107,7 @@ class _AboutState extends State<About> {
           'About',
         ),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: Color(0xFF0d1137),
       ),
       body: Container(
         margin: EdgeInsets.all(24),
@@ -138,7 +138,7 @@ class _AboutState extends State<About> {
               Padding(
                 padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: RaisedButton(
-                  color: Colors.teal,
+                  color: Color(0xFF0d1137),
                   elevation: 5,
                   child: Text(
                     'Next',
