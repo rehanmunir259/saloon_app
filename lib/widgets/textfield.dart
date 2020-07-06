@@ -6,6 +6,7 @@ class SaloonTextField extends TextFormField {
       {IconData icon,
       String label,
       TextInputType keyboardType,
+      bool obscure=false,
       BuildContext context,
       TextEditingController controller,
       Function(String) validator})
@@ -18,6 +19,7 @@ class SaloonTextField extends TextFormField {
             style: TextStyle(
               color: Colors.black,
             ),
+            obscureText: obscure,
             scrollPadding: EdgeInsets.all(80),
             decoration: InputDecoration(
               border: OutlineInputBorder(

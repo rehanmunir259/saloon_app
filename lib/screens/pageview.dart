@@ -80,6 +80,8 @@ class _PageviewState extends State<Pageview> {
       appBar: AppBar(
         title: Text('User Panel'),
         backgroundColor: Colors.teal,
+
+       
       ),
       body: SingleChildScrollView(
         child: Column(

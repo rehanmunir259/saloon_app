@@ -5,7 +5,9 @@ import 'package:saloon/screens/MenuDashboard/ChangeUsername.dart';
 import 'package:saloon/screens/MenuDashboard/SaloonAdmin.dart';
 import 'package:saloon/screens/MenuDashboard/SubAdmin.dart';
 import 'package:saloon/screens/MenuDashboard/SaloonReservation.dart';
-import 'package:saloon/screens/pageview.dart';
+import 'package:saloon/screens/login.dart';
+import 'package:saloon/screens/numberpicker.dart';
+import 'package:saloon/screens/signup.dart';
 
 
 
@@ -17,7 +19,7 @@ class SaloonApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Pageview(),
+      home: SaloonSignUp(),
       routes: {
         '/SubAdmin': (context) => SubAdmin(),
         '/SaloonAdmin': (context) => SaloonAdmin(),
