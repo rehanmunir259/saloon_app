@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:saloon/service/saloon_service.dart';
+import 'package:saloon/src/models/saloon_model.dart';
+import 'package:saloon/src/ui/pageview.dart';
 
 class GridPackage extends StatefulWidget {
   @override
@@ -7,81 +10,101 @@ class GridPackage extends StatefulWidget {
 }
 
 class _GridPackageState extends State<GridPackage> {
+  final _saloonservice = SaloonService();
+  Future<List<SaloonModel>> saloonPageFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    saloonPageFuture = _saloonservice.getSaloons();
+    //saloonPageFuture.then((value) => print(value));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return StaggeredGridView.countBuilder(
-      crossAxisCount: 4,
-      itemCount: 10,
-      itemBuilder: (BuildContext context, int index) => Card1(
-        color: Colors.amber.shade400,
-      ),
-      staggeredTileBuilder: (int index) =>
-          StaggeredTile.count(2, index.isEven ? 3.25 : 2.75),
-      mainAxisSpacing: 4.0,
-      crossAxisSpacing: 4.0,
+    return FutureBuilder(
+      future: saloonPageFuture,
+      builder: (context, snapshot) {
+        if (snapshot.data == null) {
+          return Container(
+            child: Center(
+              child: Text("Loading...."),
+            ),
+          );
+        } else {
+          return StaggeredGridView.countBuilder(
+            crossAxisCount: 4,
+            itemCount: snapshot.data.length,
+            itemBuilder: (BuildContext context, int index) => GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Pageview()),
+                );
+              },
+              child: Card1(
+                snapshot.data[index],
+              ),
+            ),
+            staggeredTileBuilder: (int index) =>
+                StaggeredTile.count(2, index.isEven ? 3.25 : 2.75),
+            mainAxisSpacing: 4.0,
+            crossAxisSpacing: 4.0,
+          );
+        }
+      },
     );
   }
 }
 
 class Card1 extends StatelessWidget {
-  const Card1({
-    Key key,
-    this.color,
-    this.onTap,
-  }) : super(key: key);
+  const Card1(this.saloon);
 
-  final Color color;
-  final Function onTap;
+  final SaloonModel saloon;
+  final Color color = Colors.orange;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      // onTap: onTap,
       child: Card(
         elevation: 5,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular((15))),
         color: color,
         child: Container(
-          margin: EdgeInsetsDirectional.only(
-            top: 15,
-          ),
+          margin: EdgeInsetsDirectional.only(top: 15, start: 20, end: 20),
           child: Column(children: <Widget>[
             CircleAvatar(
               radius: 55,
-              backgroundImage: NetworkImage(
-                  'https://images.unsplash.com/photo-1545231027-637d2f6210f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1575&q=80'),
+              backgroundImage: NetworkImage('saloon.image'),
             ),
-            SizedBox(height: 20),
-            Text('Starbucks',
+            SizedBox(height: 15),
+            Text(saloon.name,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 17,
                     fontWeight: FontWeight.w900)),
             SizedBox(height: 10),
             Expanded(
-              child: Container(
-                padding: EdgeInsetsDirectional.only(start: 20),
-                child: Text(
-                  'Lorem Ipsum is simply dummy text. ',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                  // textAlign: TextAlign.justify,
+              child: Text(
+                saloon.service,
+                style: TextStyle(
+                  color: Colors.white,
                 ),
+                // textAlign: TextAlign.justify,
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(15, 0, 10, 10),
+              padding: const EdgeInsets.only(bottom: 10),
               child: Row(
                 children: <Widget>[
                   Icon(Icons.schedule, color: Colors.white),
-                  SizedBox(
-                    width: 5,
+                  Text(
+                    saloon.openingTime + '-' + saloon.closingTime,
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w900),
                   ),
-                  Text('9am-7pm',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w900))
                 ],
               ),
             )

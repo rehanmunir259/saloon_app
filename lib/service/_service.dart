@@ -6,15 +6,15 @@ import 'package:flutter/foundation.dart';
 
 
 
-final apiUrl = 'http://192.168.1.115:3000';
+final apiUrl = 'http://192.168.1.104:3000';
 
-abstract class SaloonService<T> {
+abstract class SaloonAppService<T> {
 
 
   Future<List<T>> getAll(String route) async {
-//    print(route);
-//    print("$apiUrl/api/$route");
-    final response = await http.get('$apiUrl/api/$route', headers: {
+  //  print(route);
+  //  print("$apiUrl/$route");
+    final response = await http.get('$apiUrl/$route', headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer '
     },
@@ -57,7 +57,7 @@ abstract class SaloonService<T> {
   }
 
   static getConvertedImageUrl(String url) {
-      return "http://192.168.1.115:3000/$url";
+      return "http://192.168.1.104:3000/$url";
   }
 
   T parse(Map<String, dynamic> item);
@@ -66,7 +66,7 @@ abstract class SaloonService<T> {
     Dio dio =  Dio();
 
     try {
-      Response response = await dio.post("$apiUrl/api/$route", data: data, options: Options(
+      Response response = await dio.post("$apiUrl/$route", data: data, options: Options(
         headers: {
           "Authorization": " Bearer" + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zYXFpYi1wYzo4MDAwXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNTkyMjA4OTM3LCJleHAiOjE1OTIyMTI1MzcsIm5iZiI6MTU5MjIwODkzNywianRpIjoic3hsTWowakNLbmN4TjBhayIsInN1YiI6NiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.whqalMrRzRQqBPkcXzaCbFLHA5SlyJpBLulWmG3-ccQ'
         }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saloon/src/ui/utils/localdata.dart';
 import 'package:saloon/widgets/my-field.dart';
 
 class Details extends StatefulWidget {
@@ -7,16 +8,12 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
-  String name;
-  String address;
-  String openingT;
-  String closingT;
   final addressController = TextEditingController();
   final nameController = TextEditingController();
   final openingTController = TextEditingController();
   final closingTController = TextEditingController();
   var city = ['London', 'NewYork', 'Paris', 'Tokyo'];
-  var currentItemSelected = 'London';
+  var currentItemSelected;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -29,9 +26,6 @@ class _DetailsState extends State<Details> {
           return 'Field cannot be empty';
         }
       },
-      onSaved: (String value) {
-        name = value;
-      },
     );
   }
 
@@ -43,9 +37,6 @@ class _DetailsState extends State<Details> {
         if (value.isEmpty) {
           return 'Field cannot be empty';
         }
-      },
-      onSaved: (String value) {
-        address = value;
       },
       multiLine: true,
     );
@@ -60,9 +51,6 @@ class _DetailsState extends State<Details> {
           return 'Field cannot be empty';
         }
       },
-      onSaved: (String value) {
-        openingT = value;
-      },
     );
   }
 
@@ -75,11 +63,17 @@ class _DetailsState extends State<Details> {
           return 'Field cannot be empty';
         }
       },
-      onSaved: (String value) {
-        closingT = value;
-      },
     );
   }
+
+  
+void storeData(){
+  LocalData.saloonModel.name = nameController.text;
+  LocalData.saloonModel.address = addressController.text;
+  LocalData.saloonModel.closingTime = closingTController.text;
+  LocalData.saloonModel.openingTime = openingTController.text;
+  LocalData.saloonModel.city = currentItemSelected;
+}
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +83,7 @@ class _DetailsState extends State<Details> {
           'Details',
         ),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: Color(0xFF0d1137),
       ),
       body: Container(
         margin: EdgeInsets.all(24),
@@ -115,6 +109,7 @@ class _DetailsState extends State<Details> {
                     width: 30,
                   ),
                   DropdownButton<String>(
+                    hint: Text('Select the City'),
                     items: city.map((String dropDownStringItem) {
                       return DropdownMenuItem<String>(
                         value: dropDownStringItem,
@@ -145,7 +140,10 @@ class _DetailsState extends State<Details> {
                 padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: RaisedButton(
                   elevation: 5,
-                  color: Colors.teal,
+                  color: Color(0xFF0d1137),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
                   child: Text(
                     'Next',
                     style: TextStyle(
@@ -157,6 +155,7 @@ class _DetailsState extends State<Details> {
                       return;
                     }
                     _formKey.currentState.save();
+                    storeData();
 
                     Navigator.pushNamed(context, '/About');
                   },
@@ -169,3 +168,4 @@ class _DetailsState extends State<Details> {
     );
   }
 }
+

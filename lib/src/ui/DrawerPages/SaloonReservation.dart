@@ -16,10 +16,8 @@ class _SaloonReservationState extends State<SaloonReservation> {
       appBar: AppBar(
         title: Text(
           'Number of Reservations',
-          style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.white,
-        iconTheme: new IconThemeData(color: Colors.black),
+        backgroundColor: Color(0xFF0d1137),
       ),
       body: Column(
         children: <Widget>[

@@ -36,26 +36,26 @@ class _HomeState extends State<Home> {
         drawer: Drawer(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
-            color: Colors.indigo,
+            color: Color(0xFF0d1137),
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 100,
+                    height: 50,
                   ),
                   ListTile(
                     title: Text(
                       'Asad',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 30,
+                          fontSize: 25,
                           fontWeight: FontWeight.w800),
                     ),
                     subtitle: Text(
                       'First App Project',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20,
+                        fontSize: 15,
                       ),
                     ),
                     leading: CircleAvatar(
@@ -71,47 +71,47 @@ class _HomeState extends State<Home> {
                     endIndent: 32,
                   ),
                   MenuItem(
-                    icon: Icons.home,
+                    icon: Icons.group_add,
                     title: 'Create Sub Admin',
                     onTap: () => navigateTo(context, SubAdmin()),
                   ),
                   MenuItem(
-                    icon: Icons.person,
+                    icon: Icons.person_pin,
                     title: 'Create Saloon Admin',
                     onTap: () => navigateTo(context, SaloonAdmin()),
                   ),
                   MenuItem(
-                    icon: Icons.shopping_basket,
+                    icon: Icons.settings,
                     title: 'Account Settings',
                     onTap: () => navigateTo(context, AccountSetting()),
                   ),
                   MenuItem(
-                    icon: Icons.home,
+                    icon: Icons.assignment,
                     title: 'Sub Admin Activites',
                     onTap: () => navigateTo(context, SubAdminActivities()),
                   ),
                   MenuItem(
-                    icon: Icons.person,
+                    icon: Icons.assignment_ind,
                     title: 'Saloon Reservations',
                     onTap: () => navigateTo(context, SaloonReservation()),
                   ),
                   MenuItem(
-                    icon: Icons.shopping_basket,
+                    icon: Icons.chat,
                     title: 'Terms&Conditions',
                     onTap: () => navigateTo(context, TermsAndConditions()),
                   ),
                   MenuItem(
-                    icon: Icons.home,
+                    icon: Icons.event_note,
                     title: 'Privacy Policies',
                     onTap: () => navigateTo(context, PrivacyPolicies()),
                   ),
                   MenuItem(
-                    icon: Icons.person,
+                    icon: Icons.question_answer,
                     title: 'FAQs',
                     onTap: () => navigateTo(context, FAQs()),
                   ),
                   MenuItem(
-                    icon: Icons.shopping_basket,
+                    icon: Icons.phone,
                     title: 'Contact Us',
                     onTap: () => navigateTo(context, Contact()),
                   ),
@@ -121,6 +121,10 @@ class _HomeState extends State<Home> {
                     color: Colors.white.withOpacity(0.5),
                     indent: 32,
                     endIndent: 32,
+                  ),
+                  MenuItem(
+                    icon: Icons.person_add,
+                    title: 'Sign Up',
                   ),
                   MenuItem(
                     icon: Icons.perm_identity,
@@ -146,7 +150,7 @@ class _HomeState extends State<Home> {
             'Saloon',
           ),
           centerTitle: true,
-          backgroundColor: Colors.indigo.shade400,
+          backgroundColor: Color(0xFF0d1137),
           bottom: TabBar(
             indicatorColor: Colors.white,
             labelColor: Colors.white,

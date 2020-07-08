@@ -34,6 +34,10 @@ class _NumberpickerState extends State<Numberpicker> {
     super.initState();
   }
 
+  void storeData3(){
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,91 +45,118 @@ class _NumberpickerState extends State<Numberpicker> {
         title: Text(
           'Discount',
         ),
-        backgroundColor: Colors.teal,
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  child: AlertDialog(
+                    content: SizedBox(
+                      height: 250,
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(18.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 150.0,
+                                    child: CupertinoDatePicker(
+                                      use24hFormat: true,
+                                      mode: CupertinoDatePickerMode.time,
+                                      initialDateTime: _dateTime,
+                                      onDateTimeChanged: (datetime) {
+                                        print(datetime);
+                                        setState(() {
+                                          _dateTime = datetime;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 150.0,
+                                  child: NumberPicker.integer(
+                                    initialValue: _discount,
+                                    minValue: 0,
+                                    maxValue: 100,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _discount = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: 150,
+                            height: 50.0,
+                            
+                            child: RaisedButton(
+                              elevation: 5.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                child: Text(
+                                  'Confirm',
+                                  style: TextStyle(
+                                      fontSize: 20.0, color: Colors.white),
+                                ),
+                                color: Color(0xFF0d1137),
+                                onPressed: () async {
+                                  for (final discount in discounts) {
+                                    if (discount.time
+                                            .difference(_dateTime)
+                                            .inMinutes ==
+                                        0) {
+                                      await showDialog(
+                                          context: context,
+                                          child: AlertDialog(
+                                            content: Text('Time Already Added'),
+                                            actions: <Widget>[
+                                              FlatButton(
+                                                  child: Text('Ok'),
+                                                  onPressed: () =>
+                                                      Navigator.of(context)
+                                                          .pop())
+                                            ],
+                                          ));
+
+                                      Navigator.of(context).pop();
+                                      return;
+                                    }
+                                  }
+
+                                  setState(() {
+                                    discounts.add(DiscountModel(
+                                        discount: _discount, time: _dateTime));
+                                    enabled = false;
+                                  });
+                                  Navigator.of(context).pop();
+                                }),
+                          ),
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.center,
+                      ),
+                    ),
+                  ),
+                );
+              },
+              child: Icon(Icons.add),
+            ),
+          ),
+        ],
+        backgroundColor: Color(0xFF0d1137),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          // Padding(
-          //   padding: const EdgeInsets.all(18.0),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: <Widget>[
-          //       SizedBox(
-          //         height: 150.0,
-          //         width: 100.0,
-          //         child: CupertinoDatePicker(
-          //           use24hFormat: true,
-          //           mode: CupertinoDatePickerMode.time,
-          //           initialDateTime: _dateTime,
-          //           onDateTimeChanged: (datetime) {
-          //             print(datetime);
-          //             setState(() {
-          //               _dateTime = datetime;
-          //             });
-          //           },
-          //         ),
-          //       ),
-          //       SizedBox(
-          //         height: 150.0,
-          //         width: 100.0,
-          //         child: NumberPicker.integer(
-          //           initialValue: _discount,
-          //           minValue: 0,
-          //           maxValue: 100,
-          //           onChanged: (value) {
-          //             setState(() {
-          //               _discount = value;
-          //             });
-          //           },
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          // SizedBox(
-          //   width: double.infinity,
-          //   height: 50.0,
-          //   child: RaisedButton(
-          //       shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(28.0),
-          //       ),
-          //       child: Text(
-          //         'Confirm',
-          //         style: TextStyle(fontSize: 20.0, color: Colors.white),
-          //       ),
-          //       color: Colors.teal[300],
-          //       onPressed: enabled ? () async {
-          //         for (final discount in discounts) {
-          //           if (discount.time.difference(_dateTime).inMinutes == 0) {
-          //             await showDialog(
-          //               context: context,
-          //               child: AlertDialog(
-          //                 content: Text('Time Already Added'),
-          //                 actions: <Widget>[
-          //                   FlatButton(child: Text('Ok'), onPressed: () => Navigator.of(context).pop())
-          //                 ],
-          //               )
-          //             );
-
-          //             return;
-          //           }
-          //         }
-
-          //         setState(() {
-          //           discounts.add(DiscountModel(discount: _discount, time: _dateTime));
-          //           enabled = false;
-          //         });
-          //       } : null
-          //   ),
-          // ),
-          // Divider(
-          //   height: 15.0,
-          //   thickness: 1,
-          //   color: Colors.black,
-          //   //indent: 30.0,
-          //   //endIndent: 30.0,
-          // ),
           Expanded(
             child: ListView.separated(
               itemBuilder: (context, index) {
@@ -157,110 +188,29 @@ class _NumberpickerState extends State<Numberpicker> {
               ),
               itemCount: discounts.length,
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SizedBox(
+              height: 50,
+              width: 150,
+              child: RaisedButton(
+                onPressed: () {},
+                color: Color(0xFF0d1137),
+                elevation: 5,
+                child: Text(
+                  'Comfirm',
+                  style: TextStyle(fontSize: 17, color: Colors.white),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+          ),
+          
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add, color: Colors.white),
-          backgroundColor: Colors.teal,
-          onPressed: () {
-            showDialog(
-                context: context,
-                child: AlertDialog(
-                  content: SizedBox(
-                    height: 250,
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Expanded(
-                                child: SizedBox(
-                                  height: 150.0,
-                                  child: CupertinoDatePicker(
-                                    use24hFormat: true,
-                                    mode: CupertinoDatePickerMode.time,
-                                    initialDateTime: _dateTime,
-                                    onDateTimeChanged: (datetime) {
-                                      print(datetime);
-                                      setState(() {
-                                        _dateTime = datetime;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 150.0,
-                                child: NumberPicker.integer(
-                                  initialValue: _discount,
-                                  minValue: 0,
-                                  maxValue: 100,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _discount = value;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 50.0,
-                          child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(28.0),
-                              ),
-                              child: Text(
-                                'Confirm',
-                                style: TextStyle(
-                                    fontSize: 20.0, color: Colors.white),
-                              ),
-                              color: Colors.teal[300],
-                              onPressed: () async {
-                                for (final discount in discounts) {
-                                  if (discount.time
-                                          .difference(_dateTime)
-                                          .inMinutes ==
-                                      0) {
-                                    await showDialog(
-                                        context: context,
-                                        child: AlertDialog(
-                                          content: Text('Time Already Added'),
-                                          actions: <Widget>[
-                                            FlatButton(
-                                                child: Text('Ok'),
-                                                onPressed: () =>
-                                                    Navigator.of(context).pop())
-                                          ],
-                                        ));
-
-                                    Navigator.of(context).pop();
-                                    return;
-                                  }
-                                }
-
-                                setState(() {
-                                  discounts.add(DiscountModel(
-                                      discount: _discount, time: _dateTime));
-                                  enabled = false;
-                                });
-                                Navigator.of(context).pop();
-                              }),
-                        ),
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.center,
-                    ),
-                  ),
-                ));
-            // setState(() {
-            //   enabled = true;
-            // });
-          }),
     );
   }
 }

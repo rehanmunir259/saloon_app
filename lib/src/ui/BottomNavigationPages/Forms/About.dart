@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:saloon/widgets/my-field.dart';
+import 'package:saloon/src/ui/utils/localdata.dart';
+
 
 class About extends StatefulWidget {
   @override
@@ -87,7 +89,7 @@ class _AboutState extends State<About> {
   Widget Payment() {
     return MyInputField(
       label: "Payment",
-      controller: aboutController,
+      controller: paymentTController,
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -99,6 +101,13 @@ class _AboutState extends State<About> {
     );
   }
 
+void storeData2(){
+  LocalData.saloonModel.aboutSaloon = aboutController.text;
+  LocalData.saloonModel.atmosphere = atmosphereController.text;
+  LocalData.saloonModel.service = servicesController.text;
+  LocalData.saloonModel.language = languageController.text;
+  LocalData.saloonModel.paymentOption = paymentTController.text;
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,7 +116,7 @@ class _AboutState extends State<About> {
           'About',
         ),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: Color(0xFF0d1137),
       ),
       body: Container(
         margin: EdgeInsets.all(24),
@@ -138,8 +147,11 @@ class _AboutState extends State<About> {
               Padding(
                 padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: RaisedButton(
-                  color: Colors.teal,
+                  color: Color(0xFF0d1137),
                   elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
                   child: Text(
                     'Next',
                     style: TextStyle(
@@ -151,6 +163,7 @@ class _AboutState extends State<About> {
                       return;
                     }
                     _formKey.currentState.save();
+                    storeData2();
                     Navigator.pushNamed(context, '/Image');
                   },
                 ),

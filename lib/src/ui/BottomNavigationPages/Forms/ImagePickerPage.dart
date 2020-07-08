@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:saloon/src/ui/BottomNavigationPages/Forms/confirm-details.dart';
+import 'package:saloon/src/ui/utils/localdata.dart';
 
 class ImagePickerPage extends StatefulWidget {
   @override
@@ -10,19 +12,20 @@ class ImagePickerPage extends StatefulWidget {
 class _ImagePickerPageState extends State<ImagePickerPage> {
   File imageFile;
   final picker = ImagePicker();
+  List<File> files = [];
 
   openGallery(BuildContext context) async {
     var pic = await picker.getImage(source: ImageSource.gallery);
     this.setState(() {
-      imageFile = File(pic.path);
+      files.add(File(pic.path));
     });
     Navigator.of(context).pop();
   }
 
   openCamera(BuildContext context) async {
-    var pic = (await picker.getImage(source: ImageSource.camera)) as File;
-    this.setState(() {
-      imageFile = File(pic.path);
+    var pic = (await picker.getImage(source: ImageSource.camera));
+     this.setState(() {
+      files.add(File(pic.path));
     });
     Navigator.of(context).pop();
   }
@@ -70,44 +73,73 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
 //       );
 //    }
 //  }
+  
+  // void storeData3(){
+  //   LocalData.saloonModel.
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
+        backgroundColor: Color(0xFF0d1137),
         title: Text(
           "Select Image",
         ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: GestureDetector(
+              onTap: () {
+                showChoiceDialog(context);
+              },
+              child: Icon(Icons.add),
+            ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.teal,
-        onPressed: () {
-          showChoiceDialog(context);
-        },
-        child: Icon(
-          Icons.image,
-          color: Colors.white,
-        ),
-      ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              child: imageFile == null
-                  ? Text('No image selected.')
-                  : Image.file(imageFile),
+          files.isNotEmpty ? Expanded(
+                      child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return Container(
+                  //color: Colors.red,
+                  height: 300.0,
+                  width: 360.0,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Image.file(
+                            files[index],
+                            fit: BoxFit.cover,
+                          ),
+                  ),
+                );
+                  
+                },
+                itemCount: files.length,
+                             
+              ),
+          ) : Center(child: Text('No image selected.')),
+            SizedBox(
+              height: 100.0,
             ),
             RaisedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/Discount');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConfirmDetails(),
+                    ));
               },
               child: Text(
                 'Next',
                 style: TextStyle(color: Colors.white),
               ),
-              color: Colors.teal,
+              color: Color(0xFF0d1137),
             )
           ],
         ),
