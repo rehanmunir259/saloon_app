@@ -5,7 +5,7 @@ import { Document } from 'mongoose'
 
 /**
  * @template T
- * @author Arish Khan <arishsultan104@gmail.com>
+ *
  */
 export abstract class SimpleController<T extends Document> {
   protected constructor(protected service: SimpleService<T>) {}

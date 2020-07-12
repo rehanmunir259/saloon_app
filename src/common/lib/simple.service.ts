@@ -3,7 +3,7 @@ import { Document, Model } from 'mongoose'
 
 /**
  * @template T
- * @author Arish Khan <arishsultan104@gmail.com>
+ *
  */
 export abstract class SimpleService<T extends Document> {
   protected constructor(protected readonly model: Model<T>) {}
