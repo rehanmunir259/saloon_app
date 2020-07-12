@@ -14,6 +14,24 @@ export class ReservationService extends SimpleService<IReservation>{
     super(reservationModel);
   }
 
+  reservation(data) {
+
+    let code = Math.floor(1000 + Math.random() * 10000)
+    data.code = code;
+    console.log(code)
+
+  if(data.noOfPerson <= 0  || data.noOfPerson > 4){
+    return "No of Person can't be less than 1 and more than 4"
+  }
+  else
+    return this.reservationModel.create(data)
+
+  }
+
+
+
+  // Total Reservations of Month of Saloon
+
   reservationsOfMonth(id) {
     const _current = new Date(Date.now());
     let prev = moment({
@@ -33,7 +51,31 @@ export class ReservationService extends SimpleService<IReservation>{
     }).countDocuments();
 
   }
-  totalReservations(){
-    return this.reservationModel.find().countDocuments().exec();
+
+  // Total Reservations of Saloon
+
+  totalReservations(id){
+    return this.reservationModel.find({
+      saloon:id
+    }).countDocuments().exec();
   }
+
+  // Reservation Status
+
+   cancelReservation(id) {
+    return this.reservationModel.updateOne(
+      {
+        _id: id
+      }, {
+        status: false
+      },
+    )
+    return "Reservation Canceled"
+
+
+  }
+  
+
+
+
 }

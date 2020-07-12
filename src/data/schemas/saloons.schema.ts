@@ -7,25 +7,20 @@ export const SaloonSchema = new Schema({
   },
   address: String,
   city: String,
-  timing:[
+  image:[
     {
-      openingTime: String,
-      closingTime: String
-    },
-  ],
-  about:[
-    {
-      aboutSaloon: String,
-      atmosphere: String,
-      service: String,
-      language: String,
-      paymentOption: String
+      name: String,
+      path: String
     }
+
   ],
-  // reservation: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: 'reservations'
-  //   }
-  // ]
+  openingTime: String,
+  closingTime: String,
+  aboutSaloon: String,
+  atmosphere: String,
+  service: String,
+  language: String,
+  paymentOption: String
+
+
 })

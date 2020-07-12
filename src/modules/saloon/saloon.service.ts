@@ -13,6 +13,22 @@ export class SaloonService extends SimpleService<ISaloon>{
     super(saloonsModel)
   }
 
+
+  // favoriteSaloon(id){
+  //
+  //   return this.saloonsModel.updateOne(
+  //     {
+  //       saloon:id
+  //     },
+  //     {
+  //
+  //       isFavorite: true
+  //     }
+  //
+  //   )
+  //   return "Saloon Become Favorite"
+  // }
+
   // findAll(){
   //   return this.saloonsModel.find().exec()
   // }

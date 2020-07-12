@@ -15,6 +15,9 @@ import { ReservationModule } from './modules/reservation/reservation.module';
 
 import { DiscountService } from './modules/discount/discount.service';
 import { DiscountModule } from './modules/discount/discount.module';
+import { FileuploadController } from './fileupload/fileupload.controller';
+import { MulterModule } from '@nestjs/platform-express';
+
 
 @Module({
   imports: [
@@ -24,8 +27,11 @@ import { DiscountModule } from './modules/discount/discount.module';
     CustomerModule,
     ReservationModule,
     DiscountModule,
+    // MulterModule.register({
+    //   dest:'../uploads',
+    // }),
   ],
-  controllers: [AppController],
+  controllers: [AppController, FileuploadController],
   providers: [AppService],
 })
 export class AppModule {}

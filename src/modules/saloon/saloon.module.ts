@@ -3,6 +3,7 @@ import { SaloonController } from './saloon.controller';
 import { SaloonService } from './saloon.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import {SaloonSchema} from '../../data/schemas/saloons.schema';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -11,7 +12,10 @@ import {SaloonSchema} from '../../data/schemas/saloons.schema';
         name:'saloons',
         schema: SaloonSchema
       }
-    ])
+    ]),
+    MulterModule.register({
+      dest:'../uploads',
+    }),
   ],
   controllers: [SaloonController],
   providers: [SaloonService],
