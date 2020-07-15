@@ -3,14 +3,12 @@ import 'package:saloon/src/ui/AnimatedBottomBar/BottomBarNavigation.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/Forms/About.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/Forms/Details.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/Forms/ImagePickerPage.dart';
-import 'package:saloon/src/ui/BottomNavigationPages/Forms/numberpicker.dart';
 import 'package:saloon/src/ui/DrawerPages/AccountSetting.dart';
 import 'package:saloon/src/ui/DrawerPages/ChangePassword.dart';
 import 'package:saloon/src/ui/DrawerPages/ChangeUsername.dart';
 import 'package:saloon/src/ui/DrawerPages/SaloonAdmin.dart';
 import 'package:saloon/src/ui/DrawerPages/SaloonReservation.dart';
 import 'package:saloon/src/ui/DrawerPages/SubAdmin.dart';
-import 'package:saloon/src/ui/pageview.dart';
 
 class SaloonApp extends MaterialApp {
 
@@ -29,7 +27,7 @@ class SaloonApp extends MaterialApp {
             '/Details': (context) => Details(),
             '/About': (context) => About(),
             '/Image': (context) => ImagePickerPage(),
-            '/Discount': (context) => Numberpicker(),
+           // '/Discount': (context) => Numberpicker(),
           },
         );
 }

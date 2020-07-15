@@ -12,10 +12,12 @@ class _ChangeUsernameState extends State<ChangeUsername> {
   final confirmUserController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  // ignore: non_constant_identifier_names
   Widget CurrentUsername() {
     return MyInputField(
       label: "Current Username",
       controller: currentUserController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -24,10 +26,12 @@ class _ChangeUsernameState extends State<ChangeUsername> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget NewUsername() {
     return MyInputField(
       label: "New Username",
       controller: currentUserController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -36,10 +40,12 @@ class _ChangeUsernameState extends State<ChangeUsername> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget ConfirmUsername() {
     return MyInputField(
       label: "Confirm Username",
       controller: currentUserController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';

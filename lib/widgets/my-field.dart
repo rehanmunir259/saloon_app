@@ -6,6 +6,7 @@ class MyInputField extends TextFormField {
       String label,
       bool multiLine = false,
       Function validator,
+      Type type,
       onSaved})
       : super(
           controller: controller,

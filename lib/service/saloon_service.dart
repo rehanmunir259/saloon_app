@@ -15,11 +15,10 @@ class SaloonService extends SaloonAppService<SaloonModel> {
     return this.getAll('saloon');
   }
 
-   Future registerSaloon (SaloonModel saloon,BuildContext context) async {
+   Future registerSaloon (FormData saloon,BuildContext context) async {
 
-    FormData register = FormData.fromMap(saloon.toJson());
-
-    Response response = await SaloonAppService.post('saloon/create-saloon', register);
+    Response response = await SaloonAppService.post('saloon/create-saloon', saloon);
+    // ignore: unused_local_variable
     SaloonModel createsaloon = parse(response.data);
 
     //CustomNavigator.navigateTo(context, SignInScreen());

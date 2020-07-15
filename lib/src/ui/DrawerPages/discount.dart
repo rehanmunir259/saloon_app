@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:saloon/service/discount_service.dart';
 import 'package:saloon/src/models/discount_model.dart';
 
 class Numberpicker extends StatefulWidget {
+
+  final DiscountModel discount;
+  const Numberpicker({this.discount});
   @override
   _NumberpickerState createState() => _NumberpickerState();
 }
@@ -28,16 +32,19 @@ class _NumberpickerState extends State<Numberpicker> {
     'Nov',
     'Dec',
   ];
+  
+
+  final _discountService = DiscountService();
+  Future<List<DiscountModel>> discountPagefuture;
 
   @override
   void initState() {
     super.initState();
+    discountPagefuture = _discountService.getDiscounts();
+    //saloonPageFuture.then((value) => print(value));
   }
 
-  void storeData3(){
-    
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +77,6 @@ class _NumberpickerState extends State<Numberpicker> {
                                       mode: CupertinoDatePickerMode.time,
                                       initialDateTime: _dateTime,
                                       onDateTimeChanged: (datetime) {
-                                        print(datetime);
                                         setState(() {
                                           _dateTime = datetime;
                                         });
@@ -97,9 +103,8 @@ class _NumberpickerState extends State<Numberpicker> {
                           SizedBox(
                             width: 150,
                             height: 50.0,
-                            
                             child: RaisedButton(
-                              elevation: 5.0,
+                                elevation: 5.0,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
@@ -111,7 +116,7 @@ class _NumberpickerState extends State<Numberpicker> {
                                 color: Color(0xFF0d1137),
                                 onPressed: () async {
                                   for (final discount in discounts) {
-                                    if (discount.time
+                                    if (DateTime.parse(discount.time)
                                             .difference(_dateTime)
                                             .inMinutes ==
                                         0) {
@@ -129,16 +134,25 @@ class _NumberpickerState extends State<Numberpicker> {
                                           ));
 
                                       Navigator.of(context).pop();
+
                                       return;
                                     }
                                   }
 
                                   setState(() {
                                     discounts.add(DiscountModel(
-                                        discount: _discount, time: _dateTime));
+                                        discount: _discount,
+                                        time: _dateTime.toString()));
                                     enabled = false;
                                   });
                                   Navigator.of(context).pop();
+                                  //print(_discount);
+                                  DiscountService().registerDiscount(
+                                      dis: DiscountModel(
+                                        discount: _discount,
+                                        time: _dateTime.toString(),
+                                      ),
+                                      context: context);
                                 }),
                           ),
                         ],
@@ -158,57 +172,58 @@ class _NumberpickerState extends State<Numberpicker> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Expanded(
-            child: ListView.separated(
-              itemBuilder: (context, index) {
-                var time = discounts[index].time;
-
-                return ListTile(
-                  title: Text(
-                    "Discount ${discounts[index].discount.toString()}%",
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                  ),
-                  trailing: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Time: ${time.hour} : ${time.minute}'),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                          'Date: ${time.day}${months[time.month - 1]}${time.year}')
-                    ],
-                  ),
-                );
+            child: FutureBuilder(
+              future: discountPagefuture,
+              builder: (context, snapshot) {
+                if (snapshot.data == null) {
+                  return Container(
+                    child: Center(
+                      child: Text("Loading...."),
+                    ),
+                  );
+                } else {
+                  return ListView.separated(
+                    itemBuilder: (context, index) {
+                      var time = snapshot.data[index].time;
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 12, top: 3),
+                        child: Row(
+                          //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Expanded(
+                              flex: 2,
+                              child: Text(
+                                "Discount ${snapshot.data[index].discount.toString()}%",
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                                'Time: ${DateTime.parse(time).hour}:${DateTime.parse(time).minute}'),
+                            IconButton(
+                              icon:
+                                  Icon(Icons.delete_forever, color: Colors.red),
+                              onPressed: () {},
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) => Divider(
+                      color: Colors.black,
+                      indent: 20.0,
+                      endIndent: 20.0,
+                    ),
+                    itemCount: snapshot.data.length,
+                  );
+                }
               },
-              separatorBuilder: (context, index) => Divider(
-                color: Colors.black,
-                indent: 20.0,
-                endIndent: 20.0,
-              ),
-              itemCount: discounts.length,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: SizedBox(
-              height: 50,
-              width: 150,
-              child: RaisedButton(
-                onPressed: () {},
-                color: Color(0xFF0d1137),
-                elevation: 5,
-                child: Text(
-                  'Comfirm',
-                  style: TextStyle(fontSize: 17, color: Colors.white),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
-            ),
-          ),
-          
         ],
       ),
     );

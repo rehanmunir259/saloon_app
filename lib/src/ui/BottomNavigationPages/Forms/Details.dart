@@ -21,6 +21,7 @@ class _DetailsState extends State<Details> {
     return MyInputField(
       label: "Name of Saloon",
       controller: nameController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -33,6 +34,7 @@ class _DetailsState extends State<Details> {
     return MyInputField(
       label: "Address",
       controller: addressController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -43,9 +45,10 @@ class _DetailsState extends State<Details> {
   }
 
   Widget openingTime() {
-    return MyInputField(
+    return MyInputField( 
       label: "Opening Time",
       controller: openingTController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -58,6 +61,7 @@ class _DetailsState extends State<Details> {
     return MyInputField(
       label: "Closing Time",
       controller: closingTController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';

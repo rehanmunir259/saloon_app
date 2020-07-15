@@ -30,6 +30,8 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
     Navigator.of(context).pop();
   }
 
+  
+
   Future<void> showChoiceDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -75,8 +77,9 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
 //  }
   
   // void storeData3(){
-  //   LocalData.saloonModel.
+  //   LocalData.saloonModel.image = files;
   // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -129,11 +132,9 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
             ),
             RaisedButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ConfirmDetails(),
-                    ));
+                LocalData.saloonModel.images = files;
+                
+                Navigator.push(context,MaterialPageRoute(builder: (context) => ConfirmDetails(),));
               },
               child: Text(
                 'Next',

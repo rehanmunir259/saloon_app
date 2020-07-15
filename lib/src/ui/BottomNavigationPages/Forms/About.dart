@@ -23,10 +23,12 @@ class _AboutState extends State<About> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  // ignore: non_constant_identifier_names
   Widget AboutSaloon() {
     return MyInputField(
       label: "About Saloon",
       controller: aboutController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -39,10 +41,12 @@ class _AboutState extends State<About> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget Atmosphere() {
     return MyInputField(
       label: "Atmosphere",
       controller: atmosphereController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -55,10 +59,12 @@ class _AboutState extends State<About> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget Services() {
     return MyInputField(
       label: "Facilities/Services",
       controller: servicesController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -71,10 +77,12 @@ class _AboutState extends State<About> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget Languages() {
     return MyInputField(
       label: "Languages",
       controller: languageController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -86,10 +94,12 @@ class _AboutState extends State<About> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget Payment() {
     return MyInputField(
       label: "Payment",
       controller: paymentTController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';

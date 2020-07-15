@@ -6,11 +6,12 @@ import 'package:flutter/foundation.dart';
 
 
 
-final apiUrl = 'http://192.168.1.104:3000';
+final apiUrl = 'http://192.168.1.103:4000';
 
 abstract class SaloonAppService<T> {
 
 
+  // ignore: missing_return
   Future<List<T>> getAll(String route) async {
   //  print(route);
   //  print("$apiUrl/$route");
@@ -57,21 +58,21 @@ abstract class SaloonAppService<T> {
   }
 
   static getConvertedImageUrl(String url) {
-      return "http://192.168.1.104:3000/$url";
+      return "http://192.168.1.103:4000/$url";
   }
 
   T parse(Map<String, dynamic> item);
 
   static post(String route, data) async {
     Dio dio =  Dio();
-
     try {
       Response response = await dio.post("$apiUrl/$route", data: data, options: Options(
         headers: {
-          "Authorization": " Bearer" + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zYXFpYi1wYzo4MDAwXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNTkyMjA4OTM3LCJleHAiOjE1OTIyMTI1MzcsIm5iZiI6MTU5MjIwODkzNywianRpIjoic3hsTWowakNLbmN4TjBhayIsInN1YiI6NiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.whqalMrRzRQqBPkcXzaCbFLHA5SlyJpBLulWmG3-ccQ'
+          "Authorization": " Bearer" + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zYXFpYi1wYzo4MDAwXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNTkyMjA4OTM3LCJleHAiOjE1OTIyMTI1MzcsIm5iZiI6MTU5MjIwODkzNywianRpIjoic3hsTWowakNLbmN4TjBhayIsInN1YiI6NiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.whqalMrRzRQqBPkcXzaCbFLHA5SlyJpBLulWmG3-ccQ',
+          "Accept": "application/json",
+          "Content-Type": "application/json"
         }
       ));
-      print(response.data);
 
       return response;
     }

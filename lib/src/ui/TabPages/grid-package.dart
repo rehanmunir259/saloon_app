@@ -20,6 +20,13 @@ class _GridPackageState extends State<GridPackage> {
     //saloonPageFuture.then((value) => print(value));
   }
 
+  final List<Color> colour = [
+    Colors.orange,
+    Colors.deepPurple[300],
+    Colors.cyan[200],
+    Colors.pink[200]
+  ];
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -39,11 +46,14 @@ class _GridPackageState extends State<GridPackage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Pageview()),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          Pageview(saloon: snapshot.data[index])),
                 );
               },
               child: Card1(
                 snapshot.data[index],
+                colour[index % colour.length],
               ),
             ),
             staggeredTileBuilder: (int index) =>
@@ -58,10 +68,10 @@ class _GridPackageState extends State<GridPackage> {
 }
 
 class Card1 extends StatelessWidget {
-  const Card1(this.saloon);
+  Card1(this.saloon, this.color);
 
   final SaloonModel saloon;
-  final Color color = Colors.orange;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +87,8 @@ class Card1 extends StatelessWidget {
           child: Column(children: <Widget>[
             CircleAvatar(
               radius: 55,
-              backgroundImage: NetworkImage('saloon.image'),
+              backgroundImage:
+                  NetworkImage("http://192.168.1.103:3000/$saloon[0].image"),
             ),
             SizedBox(height: 15),
             Text(saloon.name,
@@ -105,6 +116,10 @@ class Card1 extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w900),
                   ),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  Icon(Icons.edit, color: Colors.white),
                 ],
               ),
             )

@@ -1,26 +1,21 @@
-class DiscountModel{
-  DateTime time;
+class DiscountModel {
+  String sId;
   int discount;
-  
-  DiscountModel({this.time,this.discount});
-}
+  String time;
 
-List <DiscountModel> disList = [
-  DiscountModel(
-    discount: 25
-  ),DiscountModel(
-    discount: 30
-  ),
-  DiscountModel(
-    discount: 35
-  ),
-  DiscountModel(
-    discount: 40
-  ),
-  DiscountModel(
-    discount: 45
-  ),
-  DiscountModel(
-    discount: 50
-  ),
-];
+  DiscountModel({this.sId, this.discount, this.time});
+
+  DiscountModel.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    discount = json['discount'];
+    time = json['time'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['discount'] = this.discount;
+    data['time'] = this.time;
+    return data;
+  }
+}

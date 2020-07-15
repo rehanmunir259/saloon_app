@@ -1,8 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:saloon/service/saloon_service.dart';
 import 'package:saloon/src/models/saloon_model.dart';
 import 'package:saloon/src/ui/AnimatedBottomBar/BottomBarNavigation.dart';
-import 'package:saloon/src/ui/TabPages/grid-package.dart';
 import 'package:saloon/src/ui/utils/localdata.dart';
 
 class ConfirmDetails extends StatefulWidget {
@@ -57,11 +57,23 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                     color: Colors.white,
                   ),
                 ),
-                onPressed: () {
+                onPressed: () async {
                   Navigator.push(context, MaterialPageRoute(builder: 
                   (context)=> BottomBarNavigation(),
                   ),);
-                  SaloonService().registerSaloon(LocalData.saloonModel,context);
+
+                  FormData data = FormData.fromMap(
+                    LocalData.saloonModel.toJson()
+                  );
+                  for(int i=0; i<LocalData.saloonModel.images.length; ++i){
+                   data.files.add(MapEntry(
+                            'image',
+                            await MultipartFile.fromFile(LocalData.saloonModel.images[i].path, filename: "${DateTime.now().toIso8601String()}"
+                        )));
+                  }
+
+
+                  SaloonService().registerSaloon(data,context);
                   LocalData.saloonModel = new SaloonModel();
                 },
               ),

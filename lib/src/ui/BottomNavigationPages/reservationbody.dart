@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:saloon/src/models/upcomingres_model.dart';
+import 'package:saloon/service/reservation_service.dart';
+import 'package:saloon/src/models/reservations_model.dart';
 
 class SaloonResCard extends StatefulWidget {
   @override
@@ -7,27 +8,45 @@ class SaloonResCard extends StatefulWidget {
 }
 
 class _SaloonResCardState extends State<SaloonResCard> {
+  final _reservationservice = ReservationService();
+  Future<List<ReservationModel>> reservationPageFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    reservationPageFuture = _reservationservice.getReservations();
+    //saloonPageFuture.then((value) => print(value));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      
-      itemBuilder: (context, index) {
-        return Reuseablecard(
-          res: dummyList[index],
-        );
+    return FutureBuilder(
+      future: reservationPageFuture,
+      builder: (context, snapshot) {
+        if (snapshot.data == null) {
+          return Container(
+            child: Center(
+              child: Text("Loading...."),
+            ),
+          );
+        } else {
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return Reuseablecard(
+               reservation: snapshot.data[index],
+              );           
+            },
+            itemCount: snapshot.data.length,
+          );
+        }
       },
-      itemCount: dummyList.length,
     );
   }
 }
 
 class Reuseablecard extends StatelessWidget {
-  final UpcomingRes res;
-
-  const Reuseablecard({
-    Key key,
-    this.res,
-  }) : super(key: key);
+  final ReservationModel reservation;
+  const Reuseablecard({this.reservation});
 
   String getFormattedDate(String date) {
     var d = DateTime.parse(date);
@@ -69,10 +88,10 @@ class Reuseablecard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Code: ${res.code}'),
-                    Text('Name: ${res.customerName}'),
-                    Text('Mob# ${res.customerPhone}'),
-                    Text('Email: ${res.customerEmail}'),
+                    Text('Code: ${reservation.code}'),
+                    Text('Name: ${reservation.personName}'),
+                    Text('Mob# ${reservation.contact}'),
+                    Text('Email: ${reservation.email}'),
                   ],
                 ),
                 Spacer(),
@@ -80,13 +99,10 @@ class Reuseablecard extends StatelessWidget {
                   //crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Text(
-                      getFormattedDate(
-                        res.dateTime.toIso8601String(),
-                      ),
-                    ),
-                    Text('Dis: ${res.discount.toString()}%'),
-                    Text('No of Person: ${res.noofperson.toString()}'),
+                    Text(getFormattedDate(reservation.date.toString())),
+                    Text('Time: ${reservation.reservationTime.toString().substring(11,16)}'),
+                    Text('Dis: ${reservation.discount}%'),
+                    Text('No of Person: ${reservation.noOfPerson}'),
                   ],
                 ),
               ],

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class SaloonModel {
   String sId;
   String name;
@@ -10,13 +12,15 @@ class SaloonModel {
   String service;
   String language;
   String paymentOption;
-  List<Image> image;
+  List<ImageData> image;
+  List<File> images;
 
 
   SaloonModel(
       {this.sId,
       this.name,
       this.address,
+      this.images,
       this.city,
       this.image,
       this.openingTime,
@@ -40,9 +44,9 @@ class SaloonModel {
     paymentOption = json['paymentOption'];
     service = json['service'];
     if (json['image'] != null) {
-      image = new List<Image>();
+      image = new List<ImageData>();
       json['image'].forEach((v) {
-        image.add(new Image.fromJson(v));
+        image.add(new ImageData.fromJson(v));
       });
     }
   }
@@ -67,14 +71,14 @@ class SaloonModel {
   }
 }
 
-class Image {
+class ImageData {
   String sId;
   String name;
   String path;
 
-  Image({this.sId, this.name, this.path});
+  ImageData({this.sId, this.name, this.path});
 
-  Image.fromJson(Map<String, dynamic> json) {
+  ImageData.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     path = json['path'];

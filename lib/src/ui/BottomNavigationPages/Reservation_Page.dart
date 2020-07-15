@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/reservationbody.dart';
 import 'package:saloon/src/ui/DrawerPages/AccountSetting.dart';
 import 'package:saloon/src/ui/DrawerPages/Contact.dart';
@@ -9,6 +10,7 @@ import 'package:saloon/src/ui/DrawerPages/SaloonReservation.dart';
 import 'package:saloon/src/ui/DrawerPages/SubAdmin.dart';
 import 'package:saloon/src/ui/DrawerPages/SubAdminActivities.dart';
 import 'package:saloon/src/ui/DrawerPages/TermsAndConditions.dart';
+import 'package:saloon/src/ui/DrawerPages/discount.dart';
 import 'package:saloon/src/ui/utils/navigator.dart';
 import 'package:saloon/widgets/MenuItems.dart';
 
@@ -120,6 +122,11 @@ class _ReservationPageState extends State<ReservationPage>
                   icon: Icons.settings,
                   title: 'Account Settings',
                   onTap: () => navigateTo(context, AccountSetting()),
+                ),
+                 MenuItem(
+                  icon: FontAwesomeIcons.percentage,
+                  title: 'Add Discount',
+                  onTap: () => navigateTo(context, Numberpicker()),
                 ),
                 MenuItem(
                   icon: Icons.assignment,

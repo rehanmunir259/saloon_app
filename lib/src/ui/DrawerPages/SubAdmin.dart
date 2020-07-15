@@ -16,6 +16,7 @@ class _SubAdminState extends State<SubAdmin> {
     return MyInputField(
       label: "Current Username",
       controller: userNameController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -28,6 +29,7 @@ class _SubAdminState extends State<SubAdmin> {
     return MyInputField(
       label: "Current Password",
       controller: passwordController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -40,6 +42,7 @@ class _SubAdminState extends State<SubAdmin> {
     return MyInputField(
       label: "Confirm Pass",
       controller: confirmPassController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';

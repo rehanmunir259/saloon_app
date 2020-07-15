@@ -8,7 +8,6 @@ class Slideitem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
           child: Column(
-        
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(

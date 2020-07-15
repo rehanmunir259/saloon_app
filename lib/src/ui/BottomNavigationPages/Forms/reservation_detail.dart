@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/Forms/thankyou.dart';
+import 'package:saloon/src/ui/utils/localdata_reservation.dart';
 import 'package:saloon/widgets/textfield.dart';
 
 class ReservationDetail extends StatefulWidget {
   final String noofperson;
   final DateTime date;
+  final DateTime time;
   final int discount;
-  ReservationDetail({this.date, this.noofperson, this.discount});
+  ReservationDetail({this.date, this.noofperson,this.time, this.discount});
 
   @override
   _ReservationDetailState createState() => _ReservationDetailState();
@@ -42,6 +44,12 @@ class _ReservationDetailState extends State<ReservationDetail> {
   TextEditingController phoneController = TextEditingController();
   var _formkey = GlobalKey<FormState>();
 
+   void storeReservation2(){
+    LocalDataReservation.reservationModel.personName = nameController.text;
+    LocalDataReservation.reservationModel.email = emailController.text;
+    LocalDataReservation.reservationModel.contact = int.parse(phoneController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +72,11 @@ class _ReservationDetailState extends State<ReservationDetail> {
                 SizedBox(height: 10),
                 Text(
                   'Date: ${getFormattedDate(widget.date.toString())}',
+                  style: TextStyle(fontSize: 17, ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Time: ${widget.time.toString().substring(11,16)}',
                   style: TextStyle(fontSize: 17, ),
                 ),
                 SizedBox(height: 10),
@@ -142,6 +155,7 @@ class _ReservationDetailState extends State<ReservationDetail> {
                         child: RaisedButton(
                           elevation: 5.0,
                           onPressed: () {
+                            storeReservation2();
                             if (_formkey.currentState.validate()) {
                               Navigator.push(context,MaterialPageRoute(builder: (context) => ThankyouPage(),),);
                             } else {
