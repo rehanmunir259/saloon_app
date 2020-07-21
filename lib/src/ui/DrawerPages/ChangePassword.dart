@@ -12,10 +12,12 @@ class _ChangePasswordState extends State<ChangePassword> {
   final confirmPassController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  // ignore: non_constant_identifier_names
   Widget CurrentPassword() {
     return MyInputField(
       label: "Current Password",
       controller: currentPassController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -24,10 +26,12 @@ class _ChangePasswordState extends State<ChangePassword> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget NewPassword() {
     return MyInputField(
       label: "New Password",
       controller: newPassController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -36,10 +40,12 @@ class _ChangePasswordState extends State<ChangePassword> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget ConfirmPassword() {
     return MyInputField(
       label: "Confirm Password",
       controller: confirmPassController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';

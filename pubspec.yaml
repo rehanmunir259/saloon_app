@@ -28,6 +28,9 @@ dependencies:
   numberpicker: ^1.2.0
   rxdart: 
   flutter_bloc: 
+  dio: 
+  font_awesome_flutter:
+  date_format:
 
 dev_dependencies:
   flutter_test:

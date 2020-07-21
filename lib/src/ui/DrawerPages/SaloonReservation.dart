@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:saloon/service/saloon_service.dart';
 
-import 'package:saloon/src/models/reservation_model.dart';
+import 'package:saloon/src/models/saloon_model.dart';
 
 class SaloonReservation extends StatefulWidget {
+  final SaloonModel saloon;
+  const SaloonReservation({this.saloon});
   @override
   _SaloonReservationState createState() => _SaloonReservationState();
 }
 
 class _SaloonReservationState extends State<SaloonReservation> {
-  Reservation selectedReservation;
+  SaloonModel selectedSaloon;
+
+  final _saloonService = SaloonService();
+  Future<List<SaloonModel>> saloonPagefuture;
+
+  @override
+  void initState() {
+    super.initState();
+    saloonPagefuture = _saloonService.getSaloons();
+    //saloonPageFuture.then((value) => print(value));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,35 +44,48 @@ class _SaloonReservationState extends State<SaloonReservation> {
                   Text('Please choose the Saloon'),
                   Material(
                     elevation: 20,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<Reservation>(
-                        value: selectedReservation,
-                        hint: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Text('Saloon Name'),
-                        ),
-                        items: nameList.map((name) {
-                          return DropdownMenuItem(
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Text(name.saloonName),
+                    child: FutureBuilder(
+                      future: saloonPagefuture,
+                      builder: (context, snapshot) {
+                        if(snapshot.data == null){
+                          return Container(
+                            child: Center(
+                              child: Text('loading.....'),
                             ),
-                            value: name,
                           );
-                        }).toList(),
-                        onChanged: (Reservation reservation) {
-                          setState(() {
-                            selectedReservation = reservation;
-                          });
-                        },
-                      ),
+                        }else{
+                        return DropdownButtonHideUnderline(
+                          child: DropdownButton<SaloonModel>(
+                            value: selectedSaloon,
+                            hint: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text('Saloon Name'),
+                            ),
+                            items: snapshot.data.map<DropdownMenuItem<SaloonModel>>((name) {
+                              return DropdownMenuItem<SaloonModel>(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Text(name.name),
+                                ),
+                                  value: name,
+                              );
+                            }).toList(),
+                            onChanged: (SaloonModel saloon) {
+                              setState(() {
+                                selectedSaloon = saloon;
+                              });
+                            },
+                          ),
+                        );
+                        }
+                      },
                     ),
                   ),
                 ],
               ),
             ),
           ),
-          selectedReservation != null
+          selectedSaloon != null
               ? Padding(
                   padding: const EdgeInsets.all(22.0),
                   child: Column(

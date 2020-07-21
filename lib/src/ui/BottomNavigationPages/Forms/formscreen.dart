@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'numberpicker.dart';
 
 class FormScreen extends StatefulWidget {
   @override
@@ -233,14 +232,14 @@ class _FormScreenState extends State<FormScreen> {
                       _formKey.currentState.save();
 
                       print(_saloonname.text);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return Numberpicker();
-                          },
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) {
+                      //      // return Numberpicker();
+                      //     },
+                      //   ),
+                      // );
                     },
                   ),
                 ),

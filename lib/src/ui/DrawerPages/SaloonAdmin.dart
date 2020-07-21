@@ -16,6 +16,7 @@ class _SaloonAdminState extends State<SaloonAdmin> {
     return MyInputField(
       label: "Current Username",
       controller: userNameController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -28,6 +29,7 @@ class _SaloonAdminState extends State<SaloonAdmin> {
     return MyInputField(
       label: " Password",
       controller: passwordController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -40,6 +42,7 @@ class _SaloonAdminState extends State<SaloonAdmin> {
     return MyInputField(
       label: "Confirm Password",
       controller: confirmPassController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';

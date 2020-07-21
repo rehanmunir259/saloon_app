@@ -3,20 +3,24 @@ import 'package:saloon/src/ui/AnimatedBottomBar/BottomBarNavigation.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/Forms/About.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/Forms/Details.dart';
 import 'package:saloon/src/ui/BottomNavigationPages/Forms/ImagePickerPage.dart';
-import 'package:saloon/src/ui/BottomNavigationPages/Forms/confirm-details.dart';
-import 'package:saloon/src/ui/BottomNavigationPages/Forms/numberpicker.dart';
 import 'package:saloon/src/ui/DrawerPages/AccountSetting.dart';
 import 'package:saloon/src/ui/DrawerPages/ChangePassword.dart';
 import 'package:saloon/src/ui/DrawerPages/ChangeUsername.dart';
 import 'package:saloon/src/ui/DrawerPages/SaloonAdmin.dart';
 import 'package:saloon/src/ui/DrawerPages/SaloonReservation.dart';
 import 'package:saloon/src/ui/DrawerPages/SubAdmin.dart';
-import 'package:saloon/src/ui/TabPages/grid-package.dart';
 
 class SaloonApp extends MaterialApp {
-  SaloonApp()
+
+  SaloonApp(
+  )
       : super(
+<<<<<<< HEAD
           home: ImagePickerPage(),
+=======
+          home: BottomBarNavigation(),
+          debugShowCheckedModeBanner: false,
+>>>>>>> b971eab4fae204d4415b967ac41e7fb9665dba84
           routes: {
             '/SubAdmin': (context) => SubAdmin(),
             '/SaloonAdmin': (context) => SaloonAdmin(),
@@ -27,7 +31,7 @@ class SaloonApp extends MaterialApp {
             '/Details': (context) => Details(),
             '/About': (context) => About(),
             '/Image': (context) => ImagePickerPage(),
-            '/Discount': (context) => Numberpicker(),
+           // '/Discount': (context) => Numberpicker(),
           },
         );
 }

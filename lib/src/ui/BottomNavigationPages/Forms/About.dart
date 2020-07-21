@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:saloon/widgets/my-field.dart';
+import 'package:saloon/src/ui/utils/localdata.dart';
+
 
 class About extends StatefulWidget {
   @override
@@ -21,10 +23,12 @@ class _AboutState extends State<About> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  // ignore: non_constant_identifier_names
   Widget AboutSaloon() {
     return MyInputField(
       label: "About Saloon",
       controller: aboutController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -37,10 +41,12 @@ class _AboutState extends State<About> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget Atmosphere() {
     return MyInputField(
       label: "Atmosphere",
       controller: atmosphereController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -53,10 +59,12 @@ class _AboutState extends State<About> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget Services() {
     return MyInputField(
       label: "Facilities/Services",
       controller: servicesController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -69,10 +77,12 @@ class _AboutState extends State<About> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget Languages() {
     return MyInputField(
       label: "Languages",
       controller: languageController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -84,10 +94,12 @@ class _AboutState extends State<About> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget Payment() {
     return MyInputField(
       label: "Payment",
-      controller: aboutController,
+      controller: paymentTController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -99,6 +111,13 @@ class _AboutState extends State<About> {
     );
   }
 
+void storeData2(){
+  LocalData.saloonModel.aboutSaloon = aboutController.text;
+  LocalData.saloonModel.atmosphere = atmosphereController.text;
+  LocalData.saloonModel.service = servicesController.text;
+  LocalData.saloonModel.language = languageController.text;
+  LocalData.saloonModel.paymentOption = paymentTController.text;
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,6 +159,9 @@ class _AboutState extends State<About> {
                 child: RaisedButton(
                   color: Color(0xFF0d1137),
                   elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
                   child: Text(
                     'Next',
                     style: TextStyle(
@@ -151,6 +173,7 @@ class _AboutState extends State<About> {
                       return;
                     }
                     _formKey.currentState.save();
+                    storeData2();
                     Navigator.pushNamed(context, '/Image');
                   },
                 ),

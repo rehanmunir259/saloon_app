@@ -6,8 +6,10 @@ class MyInputField extends TextFormField {
       String label,
       bool multiLine = false,
       Function validator,
+      Type type,
       onSaved})
       : super(
+          controller: controller,
           maxLines: multiLine ? null : 1,
           decoration:
               InputDecoration(labelText: label, border: OutlineInputBorder()),

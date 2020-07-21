@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:saloon/src/ui/BottomNavigationPages/Forms/confirm-details.dart';
+import 'package:saloon/src/ui/utils/localdata.dart';
 
 class ImagePickerPage extends StatefulWidget {
   @override
@@ -10,22 +12,30 @@ class ImagePickerPage extends StatefulWidget {
 class _ImagePickerPageState extends State<ImagePickerPage> {
   File imageFile;
   final picker = ImagePicker();
+  List<File> files = [];
 
   openGallery(BuildContext context) async {
     var pic = await picker.getImage(source: ImageSource.gallery);
     this.setState(() {
-      imageFile = File(pic.path);
+      files.add(File(pic.path));
     });
     Navigator.of(context).pop();
   }
 
   openCamera(BuildContext context) async {
     var pic = (await picker.getImage(source: ImageSource.camera));
+<<<<<<< HEAD
     this.setState(() {
       imageFile = File(pic.path);
+=======
+     this.setState(() {
+      files.add(File(pic.path));
+>>>>>>> b971eab4fae204d4415b967ac41e7fb9665dba84
     });
     Navigator.of(context).pop();
   }
+
+  
 
   Future<void> showChoiceDialog(BuildContext context) {
     return showDialog(
@@ -70,6 +80,11 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
 //       );
 //    }
 //  }
+  
+  // void storeData3(){
+  //   LocalData.saloonModel.image = files;
+  // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +94,19 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
         title: Text(
           "Select Image",
         ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: GestureDetector(
+              onTap: () {
+                showChoiceDialog(context);
+              },
+              child: Icon(Icons.add),
+            ),
+          ),
+        ],
       ),
+<<<<<<< HEAD
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFF0d1137),
         onPressed: () {
@@ -99,6 +126,46 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
                 child: imageFile == null
                     ? Text('No image selected.')
                     : Image.file(imageFile),
+=======
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+          files.isNotEmpty ? Expanded(
+                      child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return Container(
+                  //color: Colors.red,
+                  height: 300.0,
+                  width: 360.0,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Image.file(
+                            files[index],
+                            fit: BoxFit.cover,
+                          ),
+                  ),
+                );
+                  
+                },
+                itemCount: files.length,
+                             
+              ),
+          ) : Center(child: Text('No image selected.')),
+            SizedBox(
+              height: 100.0,
+            ),
+            RaisedButton(
+              onPressed: () {
+                LocalData.saloonModel.images = files;
+                
+                Navigator.push(context,MaterialPageRoute(builder: (context) => ConfirmDetails(),));
+              },
+              child: Text(
+                'Next',
+                style: TextStyle(color: Colors.white),
+>>>>>>> b971eab4fae204d4415b967ac41e7fb9665dba84
               ),
               RaisedButton(
                 onPressed: () {

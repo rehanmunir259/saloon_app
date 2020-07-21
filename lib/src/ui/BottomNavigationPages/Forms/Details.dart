@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saloon/src/ui/utils/localdata.dart';
 import 'package:saloon/widgets/my-field.dart';
 
 class Details extends StatefulWidget {
@@ -12,7 +13,7 @@ class _DetailsState extends State<Details> {
   final openingTController = TextEditingController();
   final closingTController = TextEditingController();
   var city = ['London', 'NewYork', 'Paris', 'Tokyo'];
-  var currentItemSelected = 'London';
+  var currentItemSelected;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -20,6 +21,7 @@ class _DetailsState extends State<Details> {
     return MyInputField(
       label: "Name of Saloon",
       controller: nameController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -32,6 +34,7 @@ class _DetailsState extends State<Details> {
     return MyInputField(
       label: "Address",
       controller: addressController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -42,9 +45,10 @@ class _DetailsState extends State<Details> {
   }
 
   Widget openingTime() {
-    return MyInputField(
+    return MyInputField( 
       label: "Opening Time",
       controller: openingTController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -57,6 +61,7 @@ class _DetailsState extends State<Details> {
     return MyInputField(
       label: "Closing Time",
       controller: closingTController,
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Field cannot be empty';
@@ -64,6 +69,15 @@ class _DetailsState extends State<Details> {
       },
     );
   }
+
+  
+void storeData(){
+  LocalData.saloonModel.name = nameController.text;
+  LocalData.saloonModel.address = addressController.text;
+  LocalData.saloonModel.closingTime = closingTController.text;
+  LocalData.saloonModel.openingTime = openingTController.text;
+  LocalData.saloonModel.city = currentItemSelected;
+}
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +113,7 @@ class _DetailsState extends State<Details> {
                     width: 30,
                   ),
                   DropdownButton<String>(
+                    hint: Text('Select the City'),
                     items: city.map((String dropDownStringItem) {
                       return DropdownMenuItem<String>(
                         value: dropDownStringItem,
@@ -130,6 +145,9 @@ class _DetailsState extends State<Details> {
                 child: RaisedButton(
                   elevation: 5,
                   color: Color(0xFF0d1137),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
                   child: Text(
                     'Next',
                     style: TextStyle(
@@ -141,6 +159,7 @@ class _DetailsState extends State<Details> {
                       return;
                     }
                     _formKey.currentState.save();
+                    storeData();
 
                     Navigator.pushNamed(context, '/About');
                   },
@@ -153,3 +172,4 @@ class _DetailsState extends State<Details> {
     );
   }
 }
+
