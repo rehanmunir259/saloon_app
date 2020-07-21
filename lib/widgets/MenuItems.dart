@@ -19,17 +19,14 @@ class MenuItem extends StatelessWidget {
             Icon(
               icon,
               color: Colors.white,
-              size: 20,
             ),
             SizedBox(
               width: 20,
             ),
             Text(
               title,
-              style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 20,
-                  color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.w300, color: Colors.white),
             ),
           ],
         ),

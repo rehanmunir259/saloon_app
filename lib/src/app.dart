@@ -11,16 +11,10 @@ import 'package:saloon/src/ui/DrawerPages/SaloonReservation.dart';
 import 'package:saloon/src/ui/DrawerPages/SubAdmin.dart';
 
 class SaloonApp extends MaterialApp {
-
-  SaloonApp(
-  )
+  SaloonApp()
       : super(
-<<<<<<< HEAD
-          home: ImagePickerPage(),
-=======
           home: BottomBarNavigation(),
           debugShowCheckedModeBanner: false,
->>>>>>> b971eab4fae204d4415b967ac41e7fb9665dba84
           routes: {
             '/SubAdmin': (context) => SubAdmin(),
             '/SaloonAdmin': (context) => SaloonAdmin(),
@@ -31,7 +25,7 @@ class SaloonApp extends MaterialApp {
             '/Details': (context) => Details(),
             '/About': (context) => About(),
             '/Image': (context) => ImagePickerPage(),
-           // '/Discount': (context) => Numberpicker(),
+            // '/Discount': (context) => Numberpicker(),
           },
         );
 }

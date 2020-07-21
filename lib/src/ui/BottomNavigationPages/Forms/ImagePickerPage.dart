@@ -24,18 +24,11 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
 
   openCamera(BuildContext context) async {
     var pic = (await picker.getImage(source: ImageSource.camera));
-<<<<<<< HEAD
     this.setState(() {
-      imageFile = File(pic.path);
-=======
-     this.setState(() {
       files.add(File(pic.path));
->>>>>>> b971eab4fae204d4415b967ac41e7fb9665dba84
     });
     Navigator.of(context).pop();
   }
-
-  
 
   Future<void> showChoiceDialog(BuildContext context) {
     return showDialog(
@@ -80,11 +73,10 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
 //       );
 //    }
 //  }
-  
+
   // void storeData3(){
   //   LocalData.saloonModel.image = files;
   // }
-
 
   @override
   Widget build(BuildContext context) {
@@ -106,80 +98,62 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
           ),
         ],
       ),
-<<<<<<< HEAD
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xFF0d1137),
-        onPressed: () {
-          showChoiceDialog(context);
-        },
-        child: Icon(
-          Icons.image,
-          color: Colors.white,
-        ),
-      ),
-      body: Center(
-        child: ListView(children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Container(
-                child: imageFile == null
-                    ? Text('No image selected.')
-                    : Image.file(imageFile),
-=======
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-          files.isNotEmpty ? Expanded(
-                      child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return Container(
-                  //color: Colors.red,
-                  height: 300.0,
-                  width: 360.0,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Image.file(
-                            files[index],
-                            fit: BoxFit.cover,
+            files.isNotEmpty
+                ? Expanded(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Container(
+                          //color: Colors.red,
+                          height: 300.0,
+                          width: 360.0,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 10.0),
+                            child: Image.file(
+                              files[index],
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                  ),
-                );
-                  
-                },
-                itemCount: files.length,
-                             
-              ),
-          ) : Center(child: Text('No image selected.')),
+                        );
+                      },
+                      itemCount: files.length,
+                    ),
+                  )
+                : Center(child: Text('No image selected.')),
             SizedBox(
               height: 100.0,
             ),
             RaisedButton(
               onPressed: () {
                 LocalData.saloonModel.images = files;
-                
-                Navigator.push(context,MaterialPageRoute(builder: (context) => ConfirmDetails(),));
+
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConfirmDetails(),
+                    ));
               },
               child: Text(
                 'Next',
                 style: TextStyle(color: Colors.white),
->>>>>>> b971eab4fae204d4415b967ac41e7fb9665dba84
               ),
-              RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/Discount');
-                },
-                child: Text(
-                  'Next',
-                  style: TextStyle(color: Colors.white),
-                ),
-                color: Color(0xFF0d1137),
-              )
-            ],
-          ),
-        ]),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/Discount');
+              },
+              child: Text(
+                'Next',
+                style: TextStyle(color: Colors.white),
+              ),
+              color: Color(0xFF0d1137),
+            )
+          ],
+        ),
       ),
     );
   }
