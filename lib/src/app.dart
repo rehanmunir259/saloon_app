@@ -16,7 +16,7 @@ import 'package:saloon/src/ui/TabPages/grid-package.dart';
 class SaloonApp extends MaterialApp {
   SaloonApp()
       : super(
-          home: ConfirmDetails(),
+          home: ImagePickerPage(),
           routes: {
             '/SubAdmin': (context) => SubAdmin(),
             '/SaloonAdmin': (context) => SaloonAdmin(),

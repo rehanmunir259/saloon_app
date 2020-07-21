@@ -20,7 +20,7 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
   }
 
   openCamera(BuildContext context) async {
-    var pic = (await picker.getImage(source: ImageSource.camera)) as File;
+    var pic = (await picker.getImage(source: ImageSource.camera));
     this.setState(() {
       imageFile = File(pic.path);
     });
@@ -81,7 +81,7 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.teal,
+        backgroundColor: Color(0xFF0d1137),
         onPressed: () {
           showChoiceDialog(context);
         },
@@ -91,26 +91,28 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
         ),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Container(
-              child: imageFile == null
-                  ? Text('No image selected.')
-                  : Image.file(imageFile),
-            ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/Discount');
-              },
-              child: Text(
-                'Next',
-                style: TextStyle(color: Colors.white),
+        child: ListView(children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Container(
+                child: imageFile == null
+                    ? Text('No image selected.')
+                    : Image.file(imageFile),
               ),
-              color: Color(0xFF0d1137),
-            )
-          ],
-        ),
+              RaisedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/Discount');
+                },
+                child: Text(
+                  'Next',
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Color(0xFF0d1137),
+              )
+            ],
+          ),
+        ]),
       ),
     );
   }
