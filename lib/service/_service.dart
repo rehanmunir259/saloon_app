@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 
 
 
-final apiUrl = 'http://192.168.1.103:4000';
+final apiUrl = 'http://192.168.10.4:4000';
 
 abstract class SaloonAppService<T> {
 
@@ -58,7 +58,7 @@ abstract class SaloonAppService<T> {
   }
 
   static getConvertedImageUrl(String url) {
-      return "http://192.168.1.103:4000/$url";
+      return "http://192.168.10.4:4000/$url";
   }
 
   T parse(Map<String, dynamic> item);

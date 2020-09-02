@@ -26,10 +26,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   numberpicker: ^1.2.0
+  font_awesome_flutter: ^8.8.1
   rxdart: 
   flutter_bloc: 
-  dio: 
-  font_awesome_flutter:
+  dio:
   date_format:
 
 dev_dependencies:
